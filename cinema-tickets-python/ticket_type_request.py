@@ -1,5 +1,5 @@
 
-class TicketTypeRequest:
+class TicketTypeRequest(object):
 
     _valid_types = ("ADULT", "CHILD", "INFANT")
 
@@ -18,9 +18,13 @@ class TicketTypeRequest:
 
             raise TypeError("number_of_tickets must be an integer")
 
-        self.ticket_type = ticket_type
+        #Because the subclasses __setattr__ method has been overwrited
+        #we tell the init method to call the __setattr__ method of the superclass
+        super().__setattr__("ticket_type", ticket_type)
+        super().__setattr__("number_of_tickets", number_of_tickets)
 
-        self.number_of_tickets = number_of_tickets
+    def __setattr__(self, __name, __value):
+        raise AssertionError(f"Instances of TicketTypeRequest cannot be modified after instansiation")
 
     def get_ticket_type(self):
 
