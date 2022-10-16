@@ -1,4 +1,10 @@
+#I have modified this class to be immutable by doing the following
+# 1) I have modified the __setattr__ method to raise an exception if anyone
+# tries to call it.
 
+# 2) Given that the init method still needs to set attributes to correctly instansiate
+# the class, I have told it to call the superclasses __setattr__ method so that those attributes
+# are set as normal
 class TicketTypeRequest(object):
 
     _valid_types = ("ADULT", "CHILD", "INFANT")
@@ -18,8 +24,9 @@ class TicketTypeRequest(object):
 
             raise TypeError("number_of_tickets must be an integer")
 
-        #Because the subclasses __setattr__ method has been overwrited
-        #we tell the init method to call the __setattr__ method of the superclass
+        # overwriting the __setattr__ method means we cannot set attributes
+        # directly in this class. We have chosen to instead call __setattr__
+        # of the superclass and set these attributes there
         super().__setattr__("ticket_type", ticket_type)
         super().__setattr__("number_of_tickets", number_of_tickets)
 
