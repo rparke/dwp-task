@@ -16,12 +16,12 @@ class TicketService:
           raise InvalidPurchaseException("Not a Valid Ticket Type Request")
     
     def _validate_number_of_tickets(self, ticket_type_requests):
-      total_number_of_tickets = sum([ticket_type_request.number_of_tickets for ticket_type_request in ticket_type_requests])
+      total_number_of_tickets = sum([ticket_type_request.get_tickets_number() for ticket_type_request in ticket_type_requests])
       if total_number_of_tickets > self.max_number_of_tickets:
         raise InvalidPurchaseException(f"You can only purchase {self.max_number_of_tickets} tickets")
 
     def _verify_that_children_and_infants_are_supervised(self, ticket_type_requests):
-      list_of_ticket_types = [ticket_type_request.ticket_type for ticket_type_request in ticket_type_requests]
+      list_of_ticket_types = [ticket_type_request.get_ticket_type() for ticket_type_request in ticket_type_requests]
       if "ADULT" not in list_of_ticket_types:
         raise InvalidPurchaseException("An Adult is Required in the Party")
 
@@ -34,12 +34,12 @@ class TicketService:
     # Helper functions calling the seat reservation and payment services
     # Calculates the number of seats needed and submits this to the seat reservation service
     def _make_seat_reservation(self, account_id, ticket_type_requests):
-      total_seats = sum([ticket_type_request.number_of_tickets for ticket_type_request in ticket_type_requests if ticket_type_request.get_ticket_type() != "INFANT"])
+      total_seats = sum([ticket_type_request.get_tickets_number() for ticket_type_request in ticket_type_requests if ticket_type_request.get_ticket_type() != "INFANT"])
       self.seat_reservation_service.reserve_seat(account_id, total_seats)
 
     # Calculates the total payment due and submits this to the seat reservation service
     def _make_request_to_payment_service(self, account_id, ticket_type_requests):
-      total_price = sum([self.ticket_prices[ticket_type_request.get_ticket_type()]*ticket_type_request.number_of_tickets for ticket_type_request in ticket_type_requests])
+      total_price = sum([self.ticket_prices[ticket_type_request.get_ticket_type()]*ticket_type_request.get_tickets_number() for ticket_type_request in ticket_type_requests])
       self.ticket_payment_service.make_payment(account_id, total_price)
 
     def purchase_tickets(self, account_id=None, ticket_type_requests=[]):
