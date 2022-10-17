@@ -8,7 +8,6 @@ import pytest
 
 
 #Test Input Validation
-
 def test_ticket_type_requests_fails_for_wrong_type():
     service = TicketService(SeatReservationService(), TicketPaymentService())
     with pytest.raises(InvalidPurchaseException):

@@ -18,7 +18,7 @@ class TicketService:
     def _validate_number_of_tickets(self, ticket_type_requests):
       total_number_of_tickets = sum([ticket_type_request.number_of_tickets for ticket_type_request in ticket_type_requests])
       if total_number_of_tickets > self.max_number_of_tickets:
-        raise InvalidPurchaseException("You can only purchase 20 tickets")
+        raise InvalidPurchaseException(f"You can only purchase {self.max_number_of_tickets} tickets")
 
     def _verify_that_children_and_infants_are_supervised(self, ticket_type_requests):
       list_of_ticket_types = [ticket_type_request.ticket_type for ticket_type_request in ticket_type_requests]
