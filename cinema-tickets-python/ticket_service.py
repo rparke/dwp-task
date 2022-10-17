@@ -1,4 +1,3 @@
-
 from purchase_exceptions import InvalidPurchaseException
 from ticket_type_request import TicketTypeRequest
 
