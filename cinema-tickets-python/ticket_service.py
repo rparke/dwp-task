@@ -42,15 +42,15 @@ class TicketService:
       self.seat_reservation_service.reserve_seat(account_id, total_seats)
       print(total_seats)
 
-    def _purchase_tickets(self, account_id, ticket_type_requests):
-      total_price = sum([self._TICKET_PRICES[ticket_type_request.get_ticket_type()] for ticket_type_request in ticket_type_requests])
+    def _make_request_to_payment_service(self, account_id, ticket_type_requests):
+      total_price = sum([self._TICKET_PRICES[ticket_type_request.get_ticket_type()]*ticket_type_request.number_of_tickets for ticket_type_request in ticket_type_requests])
       self.ticket_payment_service.make_payment(account_id, total_price)
       print(total_price)
 
     def purchase_tickets(self, account_id=None, ticket_type_requests=[]):
         self._validate_request(account_id, ticket_type_requests)
         self._make_seat_reservation(account_id, ticket_type_requests)
-        self._purchase_tickets(account_id, ticket_type_requests)
+        self._make_request_to_payment_service(account_id, ticket_type_requests)
 
 
 # # debugging code
