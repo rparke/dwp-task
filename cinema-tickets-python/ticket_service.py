@@ -51,8 +51,3 @@ class TicketService:
         self._validate_request(account_id, ticket_type_requests)
         self._make_seat_reservation(account_id, ticket_type_requests)
         self._make_request_to_payment_service(account_id, ticket_type_requests)
-
-
-# # debugging code
-service = TicketService(SeatReservationService(), TicketPaymentService())
-service.purchase_tickets(20, [TicketTypeRequest("ADULT",3), TicketTypeRequest("CHILD", 2), TicketTypeRequest("INFANT", 3)])
