@@ -1,0 +1,36 @@
+name: dwp-task
+channels:
+  - defaults
+dependencies:
+  - _libgcc_mutex=0.1=main
+  - _openmp_mutex=5.1=51_gnu
+  - attrs=21.4.0=pyhd3eb1b0_0
+  - bzip2=1.0.8=hfd63f10_2
+  - ca-certificates=2022.07.19=hd43f75c_0
+  - certifi=2022.9.24=py310hd43f75c_0
+  - iniconfig=1.1.1=pyhd3eb1b0_0
+  - ld_impl_linux-aarch64=2.38=h8131f2d_1
+  - libffi=3.3=h7c1a80f_2
+  - libgcc-ng=11.2.0=h1234567_1
+  - libgomp=11.2.0=h1234567_1
+  - libstdcxx-ng=11.2.0=h1234567_1
+  - libuuid=1.0.3=h2f4d8fa_2
+  - ncurses=6.3=h998d150_3
+  - openssl=1.1.1q=h2f4d8fa_0
+  - packaging=21.3=pyhd3eb1b0_0
+  - pip=22.2.2=py310hd43f75c_0
+  - pluggy=1.0.0=py310hd43f75c_1
+  - py=1.11.0=pyhd3eb1b0_0
+  - pyparsing=3.0.9=py310hd43f75c_0
+  - pytest=7.1.2=py310hd43f75c_0
+  - python=3.10.6=h6c906d0_0
+  - readline=8.1.2=h2f4d8fa_1
+  - setuptools=63.4.1=py310hd43f75c_0
+  - sqlite=3.39.3=hf533066_0
+  - tk=8.6.12=h241ca14_0
+  - tomli=2.0.1=py310hd43f75c_0
+  - tzdata=2022c=h04d1e81_0
+  - wheel=0.37.1=pyhd3eb1b0_0
+  - xz=5.2.6=h998d150_0
+  - zlib=1.2.12=h998d150_3
+prefix: /opt/conda/envs/dwp-task

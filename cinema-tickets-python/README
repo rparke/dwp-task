@@ -1,0 +1,13 @@
+The python environment to run this app is defined in the environment.yml file
+This is designed to be run in a container, defined in the Dockerfile
+
+For the sake of simplicity a build of the dockerfile simply copies the contents of this repository as is, rather than with a volume mapping. As a result, any changes will require a fresh build.
+
+## Container Creation
+To create the container for running and testing the application run: docker build -t dwp-task:v1.0 -f Dockerfile
+
+## Testing
+docker run -it dwp-task:v1.0 pytest
+
+## Running The App
+docker run -it dwp-task:v1.0 python -m main
